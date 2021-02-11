@@ -1,0 +1,920 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>db</title>
+	<link rel="shortcut icon" type="image/png" href="{% static "images/premiumlogo/logo.png" %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static "mdb/css/mdb.min.css"%} ">
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %} ">
+   <link rel="stylesheet" type="text/css" href="{% static "mdb/css/color.css" %} ">
+
+    <script type="text/javascript" src="{% static "mdb/js/mdb.min.js" %} "></script>
+
+    <script type="text/javascript" src="{% static "jquery-3.5.1.min.js" %} "></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static "app.css" %} ">
+    <script type="text/javascript" src="{% static "main.js" %} "></script>
+
+
+<style type="text/css">
+	code{
+		/*display: block;*/
+		font-family: "Lucida Console", Monaco, monospace;
+	}
+
+	.code-elem{
+		color: #c51162;
+	}
+	.code-str{
+		color: #ffed72;
+	}
+
+	.code-comment{
+		color: #998;
+	}
+
+	.srcode pre{
+		padding: 0;
+		margin: 0;
+		padding-bottom:-201px;
+		padding: 0;
+		margin: 0;
+	}
+
+	pre code{
+		padding: 0;
+		margin: 0;
+	}
+</style>
+
+
+
+
+
+</head>
+<body class=" p-0 m-0">
+
+<button class="btny bg-amber-300 ripple" id="dire">dir</button>
+
+<div class="sidnav" id="sdn">
+	<ul>
+		<li class=""><a href="#" class="ripple onlik">home</a></li>
+		<li class=""><a href="#lite" class="ripple onlik">lite3.lite( &nbsp;)</a></li>
+		<li class=""><a href="#exe" class="ripple onlik">execute( &nbsp;)</a></li>
+		<li class=""><a href="#inser" class="ripple onlik">insert( &nbsp;)</a></li>
+		<li class=""><a href="#fetchone" class="ripple onlik">fetchone( &nbsp;)</a></li>
+		<li class=""><a href="#fetchmany" class="ripple onlik">fetchmany( &nbsp;)</a></li>
+		<li class=""><a href="#fetchall" class="ripple onlik">fetchall( &nbsp;)</a></li>
+		<li class=""><a href="#id_fetchone" class="ripple onlik">id_fetchone( &nbsp;)</a></li>
+		<li class=""><a href="#id_fetchmany" class="ripple onlik">id_fetchmany( &nbsp;)</a></li>
+		<li class=""><a href="#id_fetchall" class="ripple onlik">id_fetchall( &nbsp;)</a></li>
+		<li class=""><a href="#find_like_start" class="ripple onlik">find_like_start( &nbsp;)</a></li>
+		<li class=""><a href="#find_like_any" class="ripple onlik">find_like_any( &nbsp;)</a></li>
+		<li class=""><a href="#find_like_end" class="ripple onlik">find_like_end( &nbsp;)</a></li>
+		<li class=""><a href="#find_no_query" class="ripple onlik">find_no_query( &nbsp;)</a></li>
+		<li class=""><a href="#update" class="ripple onlik">update( &nbsp;)</a></li>
+		<li class=""><a href="#delete" class="ripple onlik">delete( &nbsp;)</a></li>
+		<li class=""><a href="#limit" class="ripple onlik">limit( &nbsp;)</a></li>
+		<li class=""><a href="#id_limit" class="ripple onlik">id_limit( &nbsp;)</a></li>
+		<li class=""><a href="#order" class="ripple onlik">order( &nbsp;)</a></li>
+		<li class=""><a href="#drop_table" class="ripple onlik">drop_table( &nbsp;)</a></li>
+		<li class=""><a href="#close" class="ripple onlik">close( &nbsp;)</a></li>
+	</ul>
+</div>
+
+	<div class="container-fluid p-0 m-0 mt-3">
+		<div class="container">
+			<header class="mb-auto">
+				<div>
+				    <h3 class="float-md-start mb-0">lite3</h3>
+				    <nav class="nav nav-masthead justify-content-center float-md-end">
+				        <a class="nav-link  text-new active" aria-current="page" href="#">Home</a>
+				        <a class="nav-link text-new " href="#fetchone">Fetching</a>
+				        <a class="nav-link text-new " href="#update">Updating and deleting</a>
+				        <a class="nav-link text-new " href="#find_like_start">Querying</a>
+				        <a class="nav-link text-new " href="#limit">Limiting</a>
+				        <a class="nav-link text-new " href="#Release">about</a>
+				    </nav>
+				</div>
+		  	</header>
+	  	</div>
+
+	  	<div class="container pt-5 d-flex justify-content-center align-items-center flex-column">
+	  		<p class="mt-5 display-4 text-blue-300 text-center">Make An Sqlite3 DataBase</p>
+	  		<p class="h4 mt-3 text-blue-300 text-center">Super Maintainable, Faster and Easily</p>
+	  		<div class="logo">
+	  			<img src="{% static "images/premiumlogo/logo.png" %} " class="img-fluid log">
+	  		</div>
+	  		<p class="text-center mt-5 dena">The lite3 module is a set of classes and functions fully defined to making the use of the sqlite3 Python<br> builtin database module easy, improving code understanding without unfamiliar MySQL syntax.</p>
+	  		<p class="text-blue-300 mt-3">Compare the difference in speed and easiness of lite3 and vanilla sqlite3 python from the two videos.</p>
+
+	  		<div class="row p-0 m-0">
+	  			<div class="col-md-6 mt-4">
+	  				<video class="img-fluid vid" src="{% static "videos/liet3.mp4" %} " autoplay loop controls=""></video>
+	  			</div>
+	  			<div class="col-md-6 mt-4">
+	  				<video class="img-fluid vid" src="{% static "videos/sqlit.mp4" %} " autoplay loop controls=""></video>
+	  			</div>
+	  		</div>
+	  	</div>
+
+	  	<div class="container mt-5" id="lite">
+	  		<div class="container-fluid p-0 m-0">
+	  			<h2 class="text-blue-300 mb-4">Creating a database and connection</h2>
+	  			<p>This is similar to the normal where way of creating the database and connecting to it in Sqlite3 but just because we assign a variable to handle the class and its parameters since you are to use it throughout your code. <br><p class="m-0 p-0 highlight">The parameters include;</p><br>
+	  				<ol class="">
+	  					<li>Database_name</li>
+	  					<li>Connect <small class="highlight">You can use any string word</small></li>
+	  					<li>Cursor <small class="highlight">Again you can use any string word</small></li>
+	  				</ol>
+
+	  				<pre class="prer">
+	  					<code class="coder code">
+<span class="impos text-pink-500">import</span> sqlite3
+<span class="impos text-pink-500">import</span> lite3
+
+mydb = lite3.<span class="text-green-500">lite</span>('customers.db', 'conn', 'cursor')</code>
+	  				</pre>
+
+	  				<p class="note text-teal-200"> <small>Remember the connection and cursor parameters are needed, you can use any string word. &nbsp;Likely, you won't use them again.<br> The cursor is also made at this point with the connection and the database.</small></p>
+	  			</p>
+	  		</div>
+
+	  		<div class="container-fluid p-0 m-0 mt-5" id="exe">
+	  			<h2 class="text-blue-300 mb-4 hder">Creating a Table and it's Columns</h2>
+	  			<p class="mt-1 mb-0">We use the execute(&nbsp;&nbsp;) function from the lite class to carryout this task. It will take two parameters<br>
+	  				<p class="m-0 p-0 highlight">The parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>column <small class="highlight">this must be a list</small></li>
+	  				</ol>
+
+	  				<p class="m-0 p-0 mt-2 mb-2">The column parameter defines the number of columns to be used in you table.<br>It is presented in a list .</p>
+
+	  				<pre class="prer">
+	  					<code class="coder code">
+table_columns = ['name', 'email']
+mydb.<span class="text-green-500">execute</span>( 'workers', table_columns )</code>
+	  				</pre>
+	  				<p class="desc">This will create a table named workers with 2 columns ( &nbsp;name, &nbsp;email&nbsp; ).<br>You can add as many as you want.</p>
+	  			</p>
+	  		</div>
+
+	  		<div class="container-fluid p-0 m-0 mt-5" id="inser">
+	  			<h2 class="text-blue-300 mb-4 hder">Inserting or Adding Values/Rows in the Table</h2>
+	  			<p class="m-0 p-0 mt-2">Use the insert( &nbsp;&nbsp;) function to do this but with two parameters<br>
+	  				<p class="m-0 p-0 mt-1 mb-2 highlight">Parameters include;</p>
+	  				<ol>
+	  					<li>Table <small class="highlight">the name of the table you want ot use.</small></li>
+	  					<li>rows <small class="highlight">this can be a list with many or one tuple or a single tuple</small></li>
+	  				</ol>
+
+	  				<p class="m-0 p-0 mb-2 desc">The tuple or tuples must have all values according to the specified columns.<br>Any missing will raise an error.<br>You must call the execute(&nbsp; ) function first before the insert(&nbsp; ) function.</p>
+
+	  				<pre class="prer">
+	  					<code class="coder code">
+mydb.<span class="text-green-500">execute</span>('workers', table_columns)
+
+values_1 = ('jack', 'jhav@web.com')
+values_2 = [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com')]
+<span class="commenter"># all values must be filled in the columns.</span>
+
+mydb.<span class="text-green-500">insert</span>('workers, value_2)</code>
+	  				</pre>
+
+	  				<p class="desc">This must be called once when needed or else it will create many values in the database.<br>You can use a single tuple with the row values or a list with tuples that have row values.</p>
+	  				<p class="note note p-0 m-0 text-teal-200"><small>&nbsp;&nbsp; You must call the execute( &nbsp;) function first before using the insert(&nbsp; ) function since it uses some resources from it.</small></p>
+	  			</p>
+	  		</div>
+
+	  		<div class="container-fluid p-0 m-0 mt-5" id="fetchone">
+	  			<h1 class="text-blue-300 mb-4 hder">Fetching items</h1>
+	  			<p>You can use very many function for this.</p>
+	  			<h2 class="text-blue-300 mb-4">Fetching one</h2>
+	  			<p>A simple function to do this is fetchone(&nbsp; ) and it takes one parameter<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameter includes;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+one = mydb.<span class="text-green-500">fetchone</span>('workers')
+print(one)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; ('Rogers', 'rogers@gmail.com')</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">As usual it will return the first row from the database table given.</p>
+
+	  				<h2 class="text-blue-300 mb- hder" id="fetchmany">Fetching many</h2>
+	  			<p>For the fetchmany( &nbsp;) function, you will need two parameters<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Number <small class="highlight">this is the number of rows you want</small></li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+many_one = mydb.<span class="text-green-500">fetchmany</span>('workers', 3)
+many_two = mydb.<span class="text-green-500">fetchmany</span>('workers', 1)
+print(many_one)
+print(many_two)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('jack', 'jhav@web.com')]
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">A list from the database will be returned with the number of rows defined in the parameter.</p>
+
+
+	  				<h2 class="text-blue-300 mb-4 hder" id="fetchall">Fetching all</h2>
+	  			<p>A simple function to do this is fetchall( &nbsp;) and it takes one parameter<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameter includes;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+all_rows = mydb.<span class="text-green-500">fetchall</span>('workers')
+print(all_rows)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('jack', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">Remember I have 3 rows in my database and a list of all of them has been returned.</p></p>
+
+	  				<h1 class="text-blue-300 mb-4 hder" id="id_fetchone">Fetching With IDs or ROWID</h1>
+	  				<p>The functions are the same but just starting with id like <span class="text-purple-300">id_fetchall</span>( &nbsp;), <span class="text-purple-300">id_fetchmany</span>( &nbsp;)</p>
+	  				<h2 class="text-blue-300 mb-4 mt-4">Fetching one with a Rowid</h2>
+	  			<p>The simple function for this is <span class="text-purple-300">id_fetchone</span>( &nbsp;) and it takes one parameter<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameter includes;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+one = mydb.<span class="text-green-500">id_fetchone</span>('workers')
+print(one)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; ('1', 'Rogers', 'rogers@gmail.com')</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">As usual it will return the first row from the database table.</p>
+
+	  				<h2 class="text-blue-300 mb- hder" id="id_fetchmany">Fetching many with Rowids</h2>
+	  			<p>For the <span class="text-purple-300">id_fetchmany</span>( &nbsp;) function, you will need two parameters<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Number <small class="highlight">this is the number of items you want</small></li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+many_one = mydb.<span class="text-green-500">id_fetchmany</span>('workers', 3)
+many_two = mydb.<span class="text-green-500">id_fetchmany</span>('workers', 1)
+print(many_one)
+print(many_two)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+[('1', 'Rogers', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'jack', 'jhav@web.com')]
+[('1', 'Rogers', 'rogers@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">A list from the database will be returned with the number of rows defined in the parameter.</p>
+
+
+	  				<h2 class="text-blue-300 mb-4 hder" id="id_fetchall">Fetching all with rowid</h2>
+	  			<p>A simple function to do this is <span class="text-purple-300">id_fetchall</span>( &nbsp;) and it takes one parameter<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameter includes;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+all_rows = mydb.<span class="text-green-500">id_fetchall</span>('workers')
+print(all_rows)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+[('1', 'Rogers', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'jack', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">Remember I have 3 rows in my database Tbale workers and a list of all of them is returned.</p>
+	  			</p>
+	  		</div>
+
+
+	  		<div class="container-fluid p-0 infor" id="find_like_start">
+	  			<h1 class="text-blue-300 mb-4">Finding or Querying Database data.</h1>
+	  			<p>We can use very many ways to do this,&nbsp; and again I have provided very many functions to do this but it is easy to use them.<br>Since they are many, choose the one that can do your task.<br>Just follow the code below.</p>
+
+	  			<div class="container-fluid p-0 m-0">
+	  				<h2>Using like/LIKE</h2>
+	  				<p>To find great use of LIKE I have provided three functions<br>
+	  					<ul>
+	  						<li>find_like_start <small class="highlight">You can use this one to find values like starting with  specified letters or a word or anything &nbsp;<a href="#">find_like_start()</a></small></li>
+	  						<li>find_like_any <small class="highlight">this one is used to find specified values either starting ending or in the middle . &nbsp;<a href="#">find_like_any(&nbsp;)</a></small></li>
+	  						<li>find_like_end <small class="highlight">this one is used to find specified values at the end . <a href="#">find_like_end(&nbsp;)</a></small></li>
+	  					</ul>
+	  					<p class="p-0 m-0 text-teal-200">All these require the use of three parameters. <br>
+	  						<ul class="text-teal-200">
+	  							<li>Table</li>
+	  							<li>Column <small class="highlight">this is where to choose from the data to specify.</small></li>
+	  							<li>string <small class="highlight">this is the word, letter or letters you want to use to search or query the data in the database to be returned.</small></li>
+	  						</ul>
+	  					</p>
+	  					<h3 class="text-blue-300 mb-4 hder">Find like at the start</h3>
+	  					<p class="m-0 p-0">Also this will require three parameters just like the others.<br>
+	  						<ul>
+	  							<li>Table</li>
+	  							<li>Column <small class="highlight">Column from which you want to query.</small></li>
+	  							<li>String <small class="highlight">Word to use to query the rows or values.</small></li>
+	  						</ul>
+	  						<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+quer = mydb.<span class="text-green-500">find_like_start</span>( 'workers', 'name', 'Ro' )
+print(quer)
+
+quer2 = mydb.<span class="text-green-500">find_like_start</span>( 'workers', 'email', 'ro' )
+print(quer2)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [(Rogers', 'rogers@gmail.com')]
+
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), (Caty', 'rowcat@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p>They are all presented in a list although it is one.</p>
+	  				</div>
+	  					</p>
+
+
+	  					<h3 class="text-blue-300 mb-4 hder" id="find_like_any">Find like anywhere</h3>
+	  					<p class="m-0 p-0">Also this will require three parameters just like the others.<br>And remember it will choose either from the <span class="text-pink-500">inside</span>, <span class="text-pink-500">end</span> or <span class="text-pink-500">start</span>.<br>
+	  						<ul>
+	  							<li>Table</li>
+	  							<li>Column <small class="highlight">Column from which you want to query.</small></li>
+	  							<li>String <small class="highlight">Word to use to query the rows or values.</small></li>
+	  						</ul>
+	  						<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+quer3 = mydb.<span class="text-green-500">find_like_any</span>('workers', 'name', 'a')
+print(quer3)
+
+quer4 = mydb.<span class="text-green-500">find_like_any</span>('workers', 'email', '.com')
+print(quer4)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('jack', 'jhav@web.com'), (Caty', 'rowcat@gmail.com')]
+
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('jack', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p>In the names, one does not have letter <span class="highlight">a</span> anywhere so it missed but for the emails, all of them have <span class="highlight">.com</span> , so they were all presented back.</p>
+	  				</div>
+	  					</p>
+
+
+	  					<h3 class="text-blue-300 mb-4 hder" id="find_like_end">Find like at the end</h3>
+	  					<p class="m-0 p-0">Also this will require three parameters just like the others.<br> Remember the last letter specified must be the last letter of the value you want.<br>
+	  						<ul>
+	  							<li>Table</li>
+	  							<li>Column <small class="highlight">Column from which you want to query.</small></li>
+	  							<li>String <small class="highlight">Word to use to query the data.</small></li>
+	  						</ul>
+	  						<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+quer5 = mydb.<span class="text-green-500">find_like_end</span>('workers', 'name', 'ck')
+print(quer5)
+
+quer6 = mydb.<span class="text-green-500">find_like_end</span>('workers', 'email', 'om')
+print(quer6)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('jack', 'jhav@web.com')]
+
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('jack', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p>In the names, only Jack ends with <span class="highlight">ck</span> but all emails end with <span class="highlight">om</span> so they were all presented back accordingly.</p>
+	  				</div>
+	  					</p>
+
+	  				</p>
+
+
+	  				<h2 class="hder" id="find_no_query">Using Operators and MySQL syntax</h2>
+	  				<p class="m-0 p-0">This is used to find the exact data you want from the database.</p>
+	  				<p class="m-0 p-0">I have one function for this <span class="text-purple-300">find_no_query</span>(&nbsp;) but it will require two parameters<br>
+	  					<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  					<ul>
+	  						<li>Table</li>
+	  						<li>string <small class="highlight">This string should have a specifying sentence or separated words.</small>
+	  							<ul>
+	  								<p class="m-0 p-0 mt-2"><small>Using examples from our database</small></p>
+	  								<li class="code mt-2 codd">va = ' &nbsp;name = "Rogers"&nbsp;&nbsp;'<br>
+	  									mydb.<span class="text-green-500">find_no_query</span>('workes', 'va')<br><br>
+	  									<span class="">&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com')] </span>
+	  								</li><hr>
+	  								<p class="m-0 p-0 mt-4"><small>Let me say we had age column that uses numbers</small></p>
+	  								<li class="code mt-2 codd">va2 = ' &nbsp;age < 18&nbsp;&nbsp;'<br>
+	  									mydb.<span class="text-green-500">find_no_query</span>('workes', 'va2')<br><br>
+	  									<span class="">&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com', 16), ('Kelly', 'kelly@heruko.com', 17)] </span>
+	  								</li>
+	  								<p class="mt-3"><small class="highlight">Remember that in the string if you are using one of the database values or word but not a column name,<br> add other quotation marks either double or single but opposite to the parent ones and for numbers just leave the way they are.<br>Follow python str and int syntax.</small></p>
+	  							</ul>
+	  						</li>
+	  					</ul>
+	  					<h3 class="text-blue-300 mb-4 hder">Finding exact data with find_no_query</h3>
+	  					<p>Remember with this, &nbsp; you can find the exact data you want.</p>
+	  					<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+string1 = '&nbsp;name = "Rogers" '
+
+quer7 = mydb.<span class="text-green-500">find_no_query</span>('workers', string1)
+print(quer7)
+
+string2 = '&nbsp;email = "jhav@web.com" '
+
+quer8 = mydb.<span class="text-green-500">find_no_query</span>('workers', string2)
+print(quer8)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'),]
+
+&gt;&gt;&gt; [('jack', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p class="highlight"><small>Remember to add other quotations for the word you want to find in the string parameter of the find_no_query(&nbsp;) function.</small></p>
+	  				</div>
+	  				</p>
+	  			</div>
+	  		</div>
+
+
+	  		<div class="container-fluid p-0 m-0" id="update">
+	  			<h2 class="text-blue-300 mb-4 hder">Updating Database Data.</h2>
+	  			<p>Since we are updating, we shall need to specify where and what to do to that point.<br> We have to first specify what should be done and then where it should be done. <br>This is done through using parameters.<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Column where the update should take place<small class="highlight">This is the column to change.</small></li>
+	  					<li>New value for the specified value<small class="highlight">This is the new data to be set to that place.</small></li>
+	  					<li>Which column to find <small class="highlight">This is the column to find the value to be changed.</small></li>
+	  					<li>value <small class="highlight">This is the value to changed</small></li>
+	  				</ol>
+
+	  				<h3 class="mt-4">Normally</h3>
+	  				
+
+	  				<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+					<pre class="prer">
+	  					<code class="coder code">
+print(mydb.<span class="text-green-500">id_fetchall</span>('workers'))
+mydb.<span class="text-green-500">update</span>('workers', 'name', 'Frank', 'name', 'jack')
+<span class="commenter"># jack is going to be changed to Frank</span>
+
+view_change = mydb.<span class="text-green-500">fetchall</span>('workers')
+print(view_change)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('jack', 'jhav@web.com')]
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com'), ('Frank', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p class="highlight"><small></small></p>
+	  				</div>
+
+	  				<h3 class="mt-4">With Rowid</h3>
+	  				<p class="desc">For the use of rowid, you have to set parameter 4 as 'rowid', <br>this will tell that you want to use rowid and remember the rowid is a number so use a number for the last parameter.</p>
+
+	  				<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+					<pre class="prer">
+	  					<code class="coder code">
+print(mydb.<span class="text-green-500">id_fetchall</span>('workers'))
+
+mydb.<span class="text-green-500">update</span>('workers', 'name', 'Kabuye', 'rowid', 1)
+<span class="commenter"># Rogers is going to be changed to Kabuye</span>
+
+print(mydb.<span class="text-green-500">id_fetchall</span>('workers'))</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('1', 'Rogers', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')]
+
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p class="highlight"><small></small></p>
+	  				</div>
+	  			</p>
+	  		</div>
+	  	
+	  		<div class="container-fluid p-0 m-0" id="delete">
+	  			<h2 class="text-blue-300 mb-4 hder">Deleting Database Data.</h2>
+	  			<p>This could be similar to updating but here it requires two parameters and one is special<br>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Datatype <small class="highlight">This should be a tuple or int/rowid or str.</small><br>
+	  					<p class="h3 text-blue-300 mb-0 mt-4 ">Using a tuple <small>for datatype parameter.</small></p>
+	  					 <br>
+	  					 <span class=" code codd">
+	  					 The tuple must have three items with descriptive information like;<br>
+	  					 tuple_1 = ('column', 'operator', 'row_value')<br>
+	  					 tuple_2 = ( 'name', '=', 'Kabuye' )<br>
+	  					 tuple_3 = ( 'age', '<', 15 )<br>
+	  					 tuple_4 = ( 'email' = 'rowcat@gmail.com')' )
+	  					</span>
+	  					</li>
+	  				</ol></p>
+
+	  				<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+					<pre class="prer">
+	  					<code class="coder code">
+viewer1 = mydb.<span class="text-green-500">fetchall</span>('workers')
+print(viewer1)
+
+tuple_5 = ( 'name', '=', 'Caty')
+mydb.<span class="text-green-500">delete</span>('workers', tuple_5)
+<span class="commenter">#the item is deleted for good, no undo.</span>
+
+print(viewer1)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')]
+
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('3', 'Frank', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					
+	  				</div>
+
+	  				<p class="h3 text-blue-300 mb-2 mt-5 ">Using str or string</p>
+	  				<span class="mt-1 code codd">
+	  					 A string with a descriptive sentence;<br>
+	  					 string_1 = ' row = "column" '<br>
+	  					 string_2 = 'name = "Kabuye" '<br>
+	  					 string_3 = ' age < 15 '<br>
+	  					 string_4 = ' email = "rowcat@gmail.com" '
+	  					</span>
+	  					
+
+	  				<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+					<pre class="prer">
+	  					<code class="coder code">
+viewer1 = mydb.fetchall('workers')
+print(viewer1)
+
+string_5 = ' name = "Caty" '
+<span class="commenter"># mind the quotation marks</span>
+mydb.<span class="text-green-500">delete</span>('workers', string_5)
+<span class="commenter">#the item is deleted but not for good.</span>
+
+print(viewer1)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')]
+
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('3', 'Frank', 'jhav@web.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p class="highlight"><small>mind the quotation marks where it is a string or value and not a column</small></p>
+	  				</div>
+
+
+	  				<p class="h3 text-blue-300 mb-4 hder ">Using int or a number or rowid</p>
+	  				<span class="mt-1 code codd">
+	  					 We just put a number to represent the rowid<br>
+	  					 mydb.delete('workers', 3)
+	  					</span>
+
+	  				<div class="container-fluid p-0 m-0 mt-4">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+					<pre class="prer">
+	  					<code class="coder code">
+viewer1 = mydb.<span class="text-green-500">fetchall</span>('workers')
+print(viewer1)
+
+mydb.<span class="text-green-500">delete</span>('workers', 3)
+<span class="commenter">#the item is deleted for good.</span>
+
+print(viewer1)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')]
+
+&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  					<p class="highlight"><small></small></p>
+	  				</div>
+	  		</div>
+
+	  				
+
+	  		<div class="container-fluid p-0 m-0" id="limit">
+	  			<h1 class="hder">Limiting Data to Fetch From the Database</h1>
+	  			<h2 class="text-blue-300 mb-2 mt-3">Limit Fetching all</h2>
+	  			<p class="m-0 p-0">To limit the rows or data you want to fetch from the database, I have provided the limit function where it will have to present all the data but with a limit from one of the parameters of the limit(&nbsp;) function.<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Limit <small class="highlight">this should be a number</small></li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+limit_a = mydb.<span class="text-green-500">limit</span>('workers', 2)
+print(limit_a)
+
+limit_b = mydb.<span class="text-green-500">limit</span>('workers', 1)
+print(limit_b)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com'), ('Caty', 'rowcat@gmail.com')]
+
+&gt;&gt;&gt; [('Rogers', 'rogers@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">Note: if the limit number exceeds the number of data or rows in the database, &nbsp;it will return only all it has.</p></p>
+
+
+	  				<div class="container-fluid p-0 m-0" id="id_limit">
+	  					<h2 class="text-blue-300 mb-2 hder">Limiting Fetching all with Rowid</h2>
+	  			<p class="m-0 p-0">All is the same but the id_limit( &nbsp;) function just brings back the data with its rowid and it also takes two parameters<br>
+	  				<p class="m-0 p-0 mt-2 mb-2 highlight">parameters include;</p>
+	  				<ol>
+	  					<li>Table</li>
+	  					<li>Limit <small class="highlight">this should be a number</small></li>
+	  				</ol>
+
+	  				<div class="container-fluid p-0 m-0">
+	  					<div class="container-fluid p-0 m-0">
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="prer">
+	  					<code class="coder code">
+limit_c = mydb.<span class="text-green-500">id_limit</span>('workers', 2)
+print(limit_c)
+
+limit_d = mydb.<span class="text-green-500">id_limit</span>('workers', 1)
+print(limit_d)</code>
+	  				</pre>
+	  						</div>
+	  						<div class="container-fluid p-0 m-0">
+	  				<pre class="trer">
+	  					<code class="coder">
+&gt;&gt;&gt; [(1, 'Rogers', 'rogers@gmail.com'), (2, 'Caty', 'rowcat@gmail.com')]
+
+&gt;&gt;&gt; [(1, 'Rogers', 'rogers@gmail.com')]</code>
+	  				</pre>
+	  						</div>
+	  					</div>
+	  				</div>
+	  				<p class="desc">Note: if the limit number exceeds the number of data or rows in the database, it will return only all it has.</p></p>
+	  				</div>
+	  		</div>
+
+
+	  		<div class="container-fluid p-0 m-0" id="order">
+	  			<h1 class="hder">Ordering Database Data with or without a limit</h1>
+	  			<p>This is a one function that can do it all but it requires parameters according to what you want, if you want a limit in your results or fetch, you need to provide different parameters or you want to use the rowid again different parameters.<br>
+	  				<p class="h4 text-blue-300">'A' &nbsp;&nbsp;for ascending<br>'D'&nbsp;&nbsp; for descending</p>
+	  				<ul class="lidesc">
+	  					<li><span class="h4">Easy way</span>
+	  						<ul>
+	  							<p>In this way we have to use two parameters</p>
+	  							<li>Table</li>
+	  							<li>Order <small class="highlight">either ascending or descending.<br>use <span class="text-blue-300">'A'</span> to represent acsending,<br><span class="text-blue-300">'D'</span> to represent descending</small></li>
+	  							<p class="m-0 p-0 mt-4 h5">Using acsending order</p>
+	  							<li class="code mt-2 codd"><br>order_1 = mydb.<span class="text-green-500">order</span>('workes', 'A')<br>print(order_1)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com')] </span>
+	  							</li><hr>
+	  							<p class="m-0 p-0 mt-4"><span class="h6">Using acsending order with a limit</span><span><small class="highlight">Just add the number of rpws or data you want as the third parameter.</small></span></p>
+	  							<li class="code mt-2 codd"><br>order_2 = mydb.<span class="text-green-500">order</span>('workes', 'A', 2)<br>print(order_2)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('1', 'Kabuye', 'rogers@gmail.com'), ('2', 'Caty', 'rowcat@gmail.com')] </span>
+	  							</li><hr>
+	  							<p class="m-0 p-0 mt-4 h5">Using decsending order</p>
+	  							<li class="code mt-2 codd"><br>order_1 = mydb.<span class="text-green-500">order</span>('workes', 'B')<br>print(order_1)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('3', 'Frank', 'jhav@web.com'), ('2', 'Caty', 'rowcat@gmail.com'), ('1', 'Kabuye', 'rogers@gmail.com'),] </span>
+	  							</li><hr>
+	  							<p class="m-0 p-0 mt-4"><span class="h6">Using decsending with a limit</span><span><small class="highlight">Just add the number of rows or data you want as the third parameter.</small></span></p>
+	  							<li class="code mt-2 codd"><br>order_2 = mydb.<span class="text-green-500">order</span>('workes', 'B', 2)<br>print(order_2)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('3', 'Frank', 'jhav@web.com'), ('2', 'Caty', 'rowcat@gmail.com')] </span>
+	  							</li><hr>
+	  						</ul>
+	  					</li>
+
+	  					<li class="lidesc mrm"><span class="h4">Order with description</span><br><p class="mt-2">For this one, we use the a list with two items for the second parameter of the order(&nbsp;) function.</p>
+	  						<ul>
+	  							<li>Table</li>
+	  							<li>Order <small class="highlight">A list with two items is required.</small>
+	  								<ul>
+	  									<li>list1 = [&nbsp;'name', &nbsp;'A' ]<br>This means we are going to use the name's first letters to decide who comes first.</li>
+	  									<li class="mt-2">list2 = [&nbsp;'email', &nbsp;'D' ]<br>This means we are going to use the emails's first letters to decide who comes last.</li>
+	  									<li class="mt-2 code mt-2 codd"><br><br><span class="commenter">#The order comes uses the column name"s Alphabetical order</span><br>list1 = [ 'name', 'A']<br><br>order_3 = mydb.<span class="text-green-500">order</span>('workes', list1)<br>print(order_3)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('2', 'Caty', 'rowcat@gmail.com'), ('3', 'Frank', 'jhav@web.com'), ('1', 'Kabuye', 'rogers@gmail.com')] </span>
+	  									</li>
+	  									<li class="mt-2 code mt-2 codd"><br><br><span class="commenter">#The order comes uses the column email"s Alphabetical order and I have added a limit</span><br>list2 = [ 'email', 'D']<br>list3 = [ 'age', 'D']<br><br>order_4 = mydb.<span class="text-green-500">order</span>('workes', list2, 2)<br>print(order_4)<br><br>
+	  								<span class="">&gt;&gt;&gt; [('2', 'Caty', 'rowcat@gmail.com'), ('1', 'Kabuye', 'rogers@gmail.com')] </span>
+	  									</li>
+	  								</ul>
+	  							</li>
+	  						</ul>
+	  					</li>
+	  				</ul>
+	  			</p>
+
+	  			<p class="desc note text-teal-200">For numbers, it will go as usual 'A' small to big and the rest verse-verser.<br> You can Add a number as the last parameter for your limit.</p>
+
+	  		</div>
+
+
+	  		<div class="container-fluid p-0 m-0 mt-5" id="drop_table">
+	  			<h2 class="text-blue-300 mb-4 hder">Dropping or Removing a Table</h2>
+	  			<p>We use the drop_table(&nbsp; ) to completely delete our table. And no undo. It takes one parameter and thats the table.<br>
+	  				<ol>
+	  					<li>Table</li>
+	  				</ol>
+
+	  				<pre class="prer">
+	  					<code class="coder code">
+mydb.<span class="text-green-500">drop_table</span>( 'workers' )</code>
+	  				</pre>
+	  				<p class="desc">This will completely delete your table, call it only when needed or cover it in a function.<br>like; &nbsp;&nbsp;<pre>
+<code class="code codd text-pink-300"><span class="text-blue-200">def</span> <span class="text-green-200">remove</span><span class="text-light">():</span>
+    <span class="text-blue-200">mydb</span>.<span class="text-white">drop_table()</span></code></pre></p>
+	  			</p>
+	  		</div>
+
+	  		<div class="container-fluid p-0 m-0 mt-5" id="close">
+	  			<h2 class="text-blue-300 mb-4 hder">Closing connection to the database</h2>
+	  			<p>We use the close(&nbsp; ) function to do this, no parameters needed.<br>
+
+	  				<pre class="prer">
+	  					<code class="coder code">
+mydb.<span class="text-green-500">close</span>(&nbsp;)</code>
+	  				</pre>
+	  			</p>
+	  		</div>
+
+
+
+	  	</div>
+
+	</div><hr>
+	
+	<div class="container por" id="Release">
+		<p class="display-1">About</p>
+		<p class="abour"><span class="abou">Written in:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python3</p>
+		<p class="abour"><span class="abou">Release:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<sup>th</sup> Feb. 2021</p>
+		<p class="abour"><span class="abou">Licence:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apache2 license</p>
+		<p class="abour"><span class="abou">Writer:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rogers Kabuye</p>
+		<p class="abour"><span class="abou">Nationality:</span> &nbsp;&nbsp;&nbsp;Ugandan</p>
+		<p class="abour"><span class="abou">Skills:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-300">Software development, and Data-science,<br> Web-development(<small>backend and frontent</small>)</span></p>
+	</div>
+
+<script type="text/javascript">
+	function syntaxy(){
+		var ca = document.getElementsByClassName("code");
+		for (var i=0; i < ca.length; i++) {
+			var data = ca[i].innerHTML;
+
+			data = data.replace(/'(.*?)'/g, '<span class="code-str">&quot;$1&quot;</span>');
+			data = data.replace(/&lt;(.*?)&gt;/g, '<span class="code-elem">&lt;$1&gt;</span>');
+			data = data.replace(/\/\* (.*?) \*\//g, '<span class="code-comment">/* $1 */</span>');
+			
+			ca[i].innerHTML = data;
+		}
+	}
+
+	window.addEventListener('load', syntaxy);
+
+
+</script>
+
+</body>
+</html>
